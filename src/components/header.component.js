@@ -1,37 +1,25 @@
+import {House, Speedometer, GraphUp} from "react-bootstrap-icons";
 import PropTypes from "prop-types";
 
 const Header = ({logo}) => {
   return (
-    <nav className="navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid">
-        <span className="navbar-brand mb-0 h1">{logo}</span>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
+    <nav className="navbar navbar-dark bg-dark">
+      <a className="navbar-brand fs-4 fw-bold ms-4">Cyclones</a>
+      <div className="ms-auto d-none d-sm-flex">
+        <button class="btn btn-dark fs-5 fw-bold" type="button">
+          <Speedometer /> <span className="ms-2">Dashboard</span>
         </button>
-        <div
-          className="collapse navbar-collapse"
-          id="navbarSupportedContent"
-        ></div>
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="#">
-              Data
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
-              Statistic
-            </a>
-          </li>
-        </ul>
+        <button class="btn btn-dark fs-5 fw-bold ms-4 me-4" type="button">
+          <GraphUp /> <span className="ms-2">Statistik</span>
+        </button>
+      </div>
+      <div className="ms-auto d-sm-none">
+        <button class="btn btn-dark fs-5 fw-bold " type="button">
+          <Speedometer />
+        </button>
+        <button class="btn btn-dark fs-5 fw-bold ms-4 me-4" type="button">
+          <GraphUp />
+        </button>
       </div>
     </nav>
   );

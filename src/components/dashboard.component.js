@@ -5,7 +5,7 @@ import Season from "./season.component";
 import CycloneDetails from "./cyclone.component";
 import Cyclones from "./cyclones.component";
 import CycloneMap from "./map.component";
-import Test from "./test";
+import MyMap from "./test";
 
 const Dashboard = () => {
   const [seasons, setSeasons] = useState([]);
@@ -81,7 +81,7 @@ const Dashboard = () => {
       <div className="col col-lg-8">
         <div className="row row-cols-1">
           <div className="col">
-            <CycloneMap />
+            <CycloneMap cyclone={currentCyclone} details={details} />
           </div>
           <div className="col">
             <CycloneDetails cyclone={currentCyclone} details={details} />

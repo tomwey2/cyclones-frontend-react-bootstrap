@@ -8,7 +8,16 @@ const App = () => {
   return (
     <div>
       <Header />
-      <Dashboard />
+      <div className="col d-flex flex-column h-sm-100">
+        <main className="row overflow-auto">
+          <div className="col pt-4">
+            <Dashboard />
+          </div>
+        </main>
+        <footer className="row bg-light py-4 mt-auto">
+          <div className="col"> Footer content here... </div>
+        </footer>
+      </div>
     </div>
   );
 };
