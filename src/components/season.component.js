@@ -13,7 +13,7 @@ const Season = ({seasons, onChangeSeason}) => {
         >
           {seasons.map(data => {
             return (
-              <option value={data.id}>
+              <option key={data.id} value={data.id}>
                 {data.from_year} - {data.until_year}
               </option>
             );

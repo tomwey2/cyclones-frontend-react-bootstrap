@@ -1,7 +1,7 @@
 const Cyclones = ({cyclones, onSelectCyclone}) => {
   return (
     <div>
-      <table className="table table-hover">
+      <table className="table table-hover fs-6">
         <thead>
           <tr>
             <th scope="col">id</th>
