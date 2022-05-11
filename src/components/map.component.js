@@ -11,6 +11,7 @@ import "leaflet/dist/leaflet.css";
 import {createElementHook, useLeafletContext} from "@react-leaflet/core";
 import L from "leaflet";
 import {useEffect, useRef} from "react";
+import CyclonesTypesService from "../services/cyclonesTypes.service";
 
 const center = [-21, 65];
 const zoom = 4;
@@ -29,23 +30,6 @@ function getLatLongs2(props) {
   return coords;
 }
 
-const cycloneProps = [
-  {type: 0, color: "Black", width: 1}, // undefined
-  {type: 1, color: "Blue", width: 1}, // ZP
-  {type: 2, color: "Green", width: 1}, // Dsub
-  {type: 3, color: "Blue", width: 1}, // Dpost
-  {type: 4, color: "Blue", width: 1}, // Dextra
-  {type: 5, color: "Grey", width: 1}, // Ddiss
-  {type: 6, color: "Grey", width: 1}, // DsurTerr
-  {type: 7, color: "Yellow", width: 2}, // PT
-  {type: 8, color: "Yellow", width: 2}, // DT
-  {type: 9, color: "Orange", width: 3}, // TTM
-  {type: 10, color: "Orange", width: 3}, // FTT
-  {type: 11, color: "Red", width: 5}, // CT
-  {type: 12, color: "DarkRed", width: 5}, // CTI
-  {type: 13, color: "Black", width: 8} // CTII
-];
-
 function getLines(props) {
   let lines = [];
   for (let i = 1; i < props.details.length; i++) {
@@ -53,9 +37,12 @@ function getLines(props) {
     const p2 = props.details[i].coord;
     const typeId =
       props.details[i].type_id !== undefined ? props.details[i].type_id : 0;
+    const lineProps = CyclonesTypesService.getCycloneLineProp(
+      props.details[i].type_id
+    );
     lines.push({
-      color: cycloneProps[typeId].color,
-      width: cycloneProps[typeId].width,
+      color: lineProps.color,
+      width: lineProps.width,
       coord: [
         {lat: p1.x, lng: p1.y},
         {lat: p2.x, lng: p2.y}
@@ -85,7 +72,7 @@ const CycloneMap = ({cyclone, details}) => {
   return (
     <div className="card m-3">
       <div className="card-header">
-        <h5>Map of Cyclone {cyclone.name}</h5>
+        <h5>Map of Cyclone {cyclone === undefined ? "" : cyclone.name}</h5>
       </div>
       <div className="card-body">
         <MapContainer center={center} zoom={zoom}>
